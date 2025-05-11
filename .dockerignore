@@ -1,0 +1,8 @@
+# Ignore Python cache and Git metadata
+__pycache__/
+*.pyc
+*.pyo
+*.log
+*.DS_Store
+.git
+.env

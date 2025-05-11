@@ -27,6 +27,23 @@ To start the robot controller in command-line mode:
 sh main.sh
 ```
 
+## Running with Docker
+
+### Build the docker image:
+
+```bash
+docker build -t robot-controller .
+```
+
+### Run the app in CLI mode:
+```bash
+docker run -it robot-controller
+```
+### Run tests:
+```bash
+docker run -it robot-controller python -m unittest discover tests
+```
+
 ### Example Run
 ```
 Enter room dimensions (width depth):
