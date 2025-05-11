@@ -1,0 +1,1 @@
+PYTHONPATH=src python -m unittest tests/test_robot.py

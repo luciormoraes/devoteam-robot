@@ -33,8 +33,12 @@ def main():
             except ValueError:
                 print("x and y must be integers.")
 
-        print("Enter commands: example 'RFRFFRFRF'")
-        commands = input().strip().upper()
+        print("Enter commands to move the rovbot: example 'RFRFFRFRF'")
+        while True:
+            commands = input().strip().upper()
+            if all(c in {'L', 'R', 'F'} for c in commands):
+                break
+            print("Commands must only contain 'L', 'R', or 'F'. Try again:")
 
         try:
             robot = Robot(width, depth, x, y, dir)
