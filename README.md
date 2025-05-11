@@ -1,10 +1,12 @@
 # Robot Controller
 
-This repository contains a simple robot controller written in Python. The robot can navigate a room using the commands `L` (turn left), `R` (turn right), and `F` (move forward). If the robot moves out of bounds, an error is raised.
+This repository contains a simple robot controller written in Python. The robot can navigate a room using the commands `L` (turn left), `R` (turn right), and `F` (move forward). If the robot moves out of bounds, program shows the message `out of bound` .
 
-- Left : the robot turns left 90 degrees and remains on the current grid point.
-- Right : the robot turns right 90 degrees and remains on the current grid point.
-- Forward : the robot moves forward one grid point in the direction of the current orientation and maintains the same orientation.
+- `L`  : the robot turns left 90 degrees and remains on the current grid point.
+- `R` : the robot turns right 90 degrees and remains on the current grid point.
+- `F` : the robot moves forward one grid point in the direction of the current orientation and maintains the same orientation.
+- Starting Position: must be: X, Y, Direction. Direction will be `N`, `S`, `E`, `W`. X and Y must be integers.
+- Report: after the command execution, report will show the final position.
 
 ## Project Structure
 
@@ -31,9 +33,9 @@ Enter room dimensions (width depth):
 5 5
 Enter starting position (x y direction):
 1 2 N
-Enter commands:
+Enter commands to robot move in the grid:
 RFRFFRFRF
-Report: 1 3 N
+Report: 1 1 N
 
 Do you want to run another command? (yes/no):
 yes
@@ -53,7 +55,7 @@ Exiting the program.
 This project uses Python's built-in `unittest` framework. To run the tests:
 
 ```bash
-python -m unittest tests/test_robot.py
+python -m unittest test_robot.py
 ```
 
 ## Notes
