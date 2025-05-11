@@ -1,4 +1,4 @@
-# Dockerfile for Robot Controller
+# Dockerfile for Devoteam Robot Controller
 
 # Use official Python slim image
 FROM python:3.9-slim

@@ -12,7 +12,8 @@ This repository contains a simple robot controller written in Python. The robot 
 
 ```
 src/robot.py        # Core robot logic
-src/main.py          # Command-line interface runner
+src/main.py         # Start point
+src/cli.py          # Command-line interface runner
 tests/test_robot.py # Unit tests
 ```
 
@@ -25,6 +26,13 @@ To start the robot controller in command-line mode:
 
 ```bash
 sh main.sh
+```
+## Running Tests
+
+This project uses Python's built-in `unittest` framework. To run the tests:
+
+```bash
+sh test.sh
 ```
 
 ## Running with Docker
@@ -41,7 +49,7 @@ docker run -it robot-controller
 ```
 ### Run tests:
 ```bash
-docker run -it robot-controller python -m unittest discover tests
+docker run -it robot-controller python3 -m unittest discover tests
 ```
 
 ### Example Run
@@ -83,14 +91,6 @@ Do you want to run another command? (yes/no):
 no
 Exiting the program.
 
-```
-
-## Running Tests
-
-This project uses Python's built-in `unittest` framework. To run the tests:
-
-```bash
-sh test.sh
 ```
 
 ## Notes
