@@ -11,9 +11,9 @@ This repository contains a simple robot controller written in Python. The robot 
 ## Project Structure
 
 ```
-robot.py        # Core robot logic
-main.py          # Command-line interface runner
-test_robot.py # Unit tests
+src/robot.py        # Core robot logic
+src/main.py          # Command-line interface runner
+tests/test_robot.py # Unit tests
 ```
 
 ## Requirements
@@ -38,7 +38,7 @@ Enter starting position (x y direction):
 Enter commands to move the robot:
 RFRFFRFRF
 
-Report: 1 3 N
+Report: 1 1 N
 
 Do you want to run another command? (yes/no):
 yes

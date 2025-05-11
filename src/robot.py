@@ -53,7 +53,7 @@ class Robot:
             self.x = new_x
             self.y = new_y
         else:
-            raise ValueError("out of bound")
+            raise ValueError("Robot attempted to move out of bounds")
 
     def report(self):
         return f"Report: {self.x} {self.y} {self.direction.name}"
