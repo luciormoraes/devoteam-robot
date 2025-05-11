@@ -1,55 +1,64 @@
-'''
-This is a simple robot simulation program that allows the user to control a robot
-in a rectangular room. The robot can move forward, turn left or right, and report its position.
-The program includes error handling for invalid inputs and out-of-bounds movements.
-'''
-
 from robot import Robot
 
-def main():
-    print("Enter room dimensions (width depth), format example '4 5': ")
+VALID_DIRECTIONS = {"N", "S", "E", "W"}
+VALID_COMMANDS = {"L", "R", "F"}
+
+def get_positive_ints(prompt):
     while True:
         try:
-            width, depth = map(int, input().split())
-            if width <= 0 or depth <= 0:
-                print("Room size must be at least 1x1.")
-                continue
-            break
+            values = list(map(int, input(prompt).split()))
+            if len(values) != 2 or any(v <= 0 for v in values):
+                raise ValueError
+            return values
         except ValueError:
-            print("Please enter two integers for room dimensions, like: 5 5")
+            print("Please enter two positive integers (e.g. 5 5)")
 
+def get_starting_position(room_width, room_depth):
     while True:
-        # Get starting position safely
-        while True:
-            print("\nEnter starting position (x y direction), format example '3 3 E':")
-            parts = input().split()
-            if len(parts) != 3:
-                print("Please enter exactly 3 values: x y direction (e.g. 1 2 N)")
-                continue
-            try:
-                x, y = int(parts[0]), int(parts[1])
-                dir = parts[2].upper()
-                break
-            except ValueError:
-                print("x and y must be integers.")
-
-        print("Enter commands to move the rovbot: example 'RFRFFRFRF'")
-        while True:
-            commands = input().strip().upper()
-            if all(c in {'L', 'R', 'F'} for c in commands):
-                break
-            print("Commands must only contain 'L', 'R', or 'F'. Try again:")
+        parts = input("Enter starting position (x y direction):\n").split()
+        if len(parts) != 3:
+            print("Please enter exactly 3 values: x y direction (e.g. 1 2 N)")
+            continue
 
         try:
-            robot = Robot(width, depth, x, y, dir)
+            x, y = int(parts[0]), int(parts[1])
+            direction = parts[2].upper()
+
+            if not (0 <= x < room_width and 0 <= y < room_depth):
+                print(f"Starting position must be within room bounds: 0 ≤ x < {room_width}, 0 ≤ y < {room_depth}")
+                continue
+
+            if direction not in VALID_DIRECTIONS:
+                print("Direction must be one of: N, S, E, W")
+                continue
+
+            return x, y, direction
+        except ValueError:
+            print("x and y must be integers.")
+
+def get_valid_commands():
+    while True:
+        commands = input("Enter commands to move the robot:\n").strip().upper()
+        if all(c in VALID_COMMANDS for c in commands):
+            return commands
+        print("Commands must only contain the characters: L, R, F")
+
+def main():
+    room_width, room_depth = get_positive_ints("Enter room dimensions (width depth):\n")
+
+    while True:
+        x, y, direction = get_starting_position(room_width, room_depth)
+        commands = get_valid_commands()
+
+        try:
+            robot = Robot(room_width, room_depth, x, y, direction)
             robot.execute_commands(commands)
             print(robot.report())
         except ValueError as e:
             print(f"Error: {e}")
 
-        print("\nDo you want to run another command? (yes/no):")
-        answer = input().strip().lower()
-        if answer != 'yes':
+        again = input("\nDo you want to run another command? (yes/no): ").strip().lower()
+        if again != 'yes':
             print("Exiting the program.")
             break
 

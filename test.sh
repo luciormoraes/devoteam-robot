@@ -1,1 +1,1 @@
-PYTHONPATH=src python -m unittest tests/test_robot.py
+PYTHONPATH=src python3 -m unittest tests/test_robot.py
